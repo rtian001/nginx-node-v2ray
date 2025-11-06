@@ -33,7 +33,8 @@ RUN rm /etc/nginx/conf.d/default.conf
 COPY config.json  /etc/v2fly/config.json 
  
 # 暴露端口 
-EXPOSE 80 443 10086  # Nginx (80/443) + v2fly (10086)
+EXPOSE 80 443 10086  
+# Nginx (80/443) + v2fly (10086)
  
 # 启动脚本 (协调多进程 [8]())
 COPY entrypoint.sh  /entrypoint.sh  
