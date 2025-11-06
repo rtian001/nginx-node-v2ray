@@ -2,9 +2,11 @@
 FROM node:22-alpine3.21 AS node-builder 
 WORKDIR /app
 COPY package*.json ./
-RUN npm ci --omit=dev  # 仅安装生产依赖
+RUN npm ci --omit=dev  
+# 仅安装生产依赖
 COPY . .
-RUN npm run build      # 假设存在构建脚本 (如 TypeScript 编译)
+RUN npm run build      
+# 假设存在构建脚本 (如 TypeScript 编译)
  
 # 第二阶段：最终镜像
 FROM alpine:3.21 
