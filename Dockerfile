@@ -1,8 +1,6 @@
 # 第一阶段：构建 Node.js  应用
 FROM node:22-alpine3.21 AS node-builder 
 WORKDIR /app
-COPY package*.json ./
-RUN npm ci 
 COPY . .
 RUN npm run build      
 # 假设存在构建脚本 (如 TypeScript 编译)
