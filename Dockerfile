@@ -13,7 +13,7 @@ ENV TZ=Asia/Shanghai
 # 安装基础依赖
 RUN apk add --no-cache \
     nginx \
-    nodejs=22        # 指定 Node.js  版本 
+    nodejs
 RUN mkdir -p /var/log/v2fly
  
 # 从上一阶段复制 Node 应用
