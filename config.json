@@ -1,122 +1,156 @@
 {
-  log: {
-    access: '/dev/null',
-    error: '/dev/null',
-    loglevel: 'none'
+  "log": {
+    "access": "/dev/null",
+    "error": "/dev/null",
+    "loglevel": "none"
   },
-  inbounds: [{
-    port: ARGO_PORT,
-    protocol: 'vless',
-    settings: {
-      clients: [{
-        id: UUID,
-        flow: 'xtls-rprx-vision'
-      }],
-      decryption: 'none',
-      fallbacks: [{
-        dest: 3001
-      }, {
-        path: "/vless",
-        dest: 3002
-      }, {
-        path: "/vmess",
-        dest: 3003
-      }, {
-        path: "/trojan",
-        dest: 3004
-      }]
-    },
-    streamSettings: {
-      network: 'tcp'
-    }
-  }, {
-    port: 3001,
-    listen: "127.0.0.1",
-    protocol: "vless",
-    settings: {
-      clients: [{
-        id: UUID
-      }],
-      decryption: "none"
-    },
-    streamSettings: {
-      network: "tcp",
-      security: "none"
-    }
-  }, {
-    port: 3002,
-    listen: "127.0.0.1",
-    protocol: "vless",
-    settings: {
-      clients: [{
-        id: UUID,
-        level: 0
-      }],
-      decryption: "none"
-    },
-    streamSettings: {
-      network: "ws",
-      security: "none",
-      wsSettings: {
-        path: "/vless"
+  "inbounds": [
+    {
+      "port": 1081,
+      "protocol": "vless",
+      "settings": {
+        "clients": [
+          {
+            "id": "b09d77e7-ef5a-4470-afca-315f847b7fc6",
+            "flow": "xtls-rprx-vision"
+          }
+        ],
+        "decryption": "none",
+        "fallbacks": [
+          {
+            "dest": 3001
+          },
+          {
+            "path": "/vless",
+            "dest": 3002
+          },
+          {
+            "path": "/vmess",
+            "dest": 3003
+          },
+          {
+            "path": "/trojan",
+            "dest": 3004
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "xhttp"
+        
       }
     },
-    sniffing: {
-      enabled: true,
-      destOverride: ["http", "tls", "quic"],
-      metadataOnly: false
-    }
-  }, {
-    port: 3003,
-    listen: "127.0.0.1",
-    protocol: "vmess",
-    settings: {
-      clients: [{
-        id: UUID,
-        alterId: 0
-      }]
-    },
-    streamSettings: {
-      network: "ws",
-      wsSettings: {
-        path: "/vmess"
+    {
+      "port": 3001,
+      "listen": "127.0.0.1",
+      "protocol": "vless",
+      "settings": {
+        "clients": [
+          {
+            "id": "b09d77e7-ef5a-4470-afca-315f847b7fc6"
+          }
+        ],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "grpc",
+        "security": "none"
       }
     },
-    sniffing: {
-      enabled: true,
-      destOverride: ["http", "tls", "quic"],
-      metadataOnly: false
-    }
-  }, {
-    port: 3004,
-    listen: "127.0.0.1",
-    protocol: "trojan",
-    settings: {
-      clients: [{
-        password: UUID
-      }]
-    },
-    streamSettings: {
-      network: "ws",
-      security: "none",
-      wsSettings: {
-        path: "/trojan"
+    {
+      "port": 3002,
+      "listen": "127.0.0.1",
+      "protocol": "vless",
+      "settings": {
+        "clients": [
+          {
+            "id": "b09d77e7-ef5a-4470-afca-315f847b7fc6",
+            "level": 0
+          }
+        ],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "grpc",
+        "security": "none",
+        "wsSettings": {
+          "path": "/vless"
+        }
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls",
+          "quic"
+        ],
+        "metadataOnly": false
       }
     },
-    sniffing: {
-      enabled: true,
-      destOverride: ["http", "tls", "quic"],
-      metadataOnly: false
+    {
+      "port": 3003,
+      "listen": "127.0.0.1",
+      "protocol": "vmess",
+      "settings": {
+        "clients": [
+          {
+            "id": "b09d77e7-ef5a-4470-afca-315f847b7fc6",
+            "alterId": 0
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "grpc",
+        "wsSettings": {
+          "path": "/vmess"
+        }
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls",
+          "quic"
+        ],
+        "metadataOnly": false
+      }
+    },
+    {
+      "port": 3004,
+      "listen": "127.0.0.1",
+      "protocol": "trojan",
+      "settings": {
+        "clients": [
+          {
+            "password": "b09d77e7-ef5a-4470-afca-315f847b7fc6"
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "grpc",
+        "security": "none",
+        "wsSettings": {
+          "path": "/trojan"
+        }
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls",
+          "quic"
+        ],
+        "metadataOnly": false
+      }
     }
-  }, ],
-  dns: {
-    servers: ["https+local://8.8.8.8/dns-query"]
-  },
-  outbounds: [{
-    protocol: "freedom",
-    tag: "direct"
-  }, {
-    protocol: "blackhole",
-    tag: "block"
-  }]
+  ],
+  "outbounds": [
+    {
+      "protocol": "freedom",
+      "tag": "direct"
+    },
+    {
+      "protocol": "blackhole",
+      "tag": "block"
+    }
+  ]
 }
