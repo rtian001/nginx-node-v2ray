@@ -16,13 +16,13 @@
       fallbacks: [{
         dest: 3001
       }, {
-        path: "/vless-argo",
+        path: "/vless",
         dest: 3002
       }, {
-        path: "/vmess-argo",
+        path: "/vmess",
         dest: 3003
       }, {
-        path: "/trojan-argo",
+        path: "/trojan",
         dest: 3004
       }]
     },
@@ -58,7 +58,7 @@
       network: "ws",
       security: "none",
       wsSettings: {
-        path: "/vless-argo"
+        path: "/vless"
       }
     },
     sniffing: {
@@ -79,7 +79,7 @@
     streamSettings: {
       network: "ws",
       wsSettings: {
-        path: "/vmess-argo"
+        path: "/vmess"
       }
     },
     sniffing: {
@@ -100,7 +100,7 @@
       network: "ws",
       security: "none",
       wsSettings: {
-        path: "/trojan-argo"
+        path: "/trojan"
       }
     },
     sniffing: {
