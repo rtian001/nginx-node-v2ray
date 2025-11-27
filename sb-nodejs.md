@@ -1,1 +1,96 @@
 https://github.com/eishare/Singbox-nodejs
+
+
+·
+```
+{
+  "inbounds": [
+    {
+        "type":"vmess",
+        "listen":"::",
+        "listen_port":35551,
+        "tcp_fast_open":false,
+        "proxy_protocol":false,
+        "users":[
+            {
+                "uuid":"f045ae4c-397b-4090-a441-347b899c36d2",
+                "alterId":0
+            }
+        ],
+        "transport":{
+            "type":"ws",
+            "path":"/blackmyth",
+            "max_early_data":2048,
+            "early_data_header_name":"Sec-WebSocket-Protocol"
+        },
+        "multiplex":{
+            "enabled":true,
+            "padding":true,
+            "brutal":{
+                "enabled":true,
+                "up_mbps":1000,
+                "down_mbps":1000
+            }
+        }
+    },
+    {
+      "type":"vless",
+      "tag":"vless-in",
+      "listen":"::",
+        "listen_port":35552,
+        "tcp_fast_open":false,
+        "proxy_protocol":false,
+      "users":[
+        {
+          "uuid":"f045ae4c-397b-4090-a441-347b899c36d2",
+          "flow":""
+        }
+      ],
+        "transport":{
+            "type":"ws",
+            "path":"/vless",
+            "max_early_data":2048,
+            "early_data_header_name":"Sec-WebSocket-Protocol"
+        },
+        "multiplex":{
+            "enabled":true,
+            "padding":true,
+            "brutal":{
+                "enabled":true,
+                "up_mbps":1000,
+                "down_mbps":1000
+            }
+        }
+    }
+    ,
+    {
+      "type":"trojan",
+      "tag":"trojan-in",
+      "listen":"::",
+        "listen_port":35553,
+        "tcp_fast_open":false,
+        "proxy_protocol":false,
+      "users":[
+        {
+          "password":"f045ae4c-397b-4090-a441-347b899c36d2"
+        }
+      ],
+        "transport":{
+            "type":"ws",
+            "path":"/trojan",
+            "max_early_data":2048,
+            "early_data_header_name":"Sec-WebSocket-Protocol"
+        },
+        "multiplex":{
+            "enabled":true,
+            "padding":true,
+            "brutal":{
+                "enabled":true,
+                "up_mbps":1000,
+                "down_mbps":1000
+            }
+        }
+    }
+  ]
+}
+```
